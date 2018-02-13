@@ -35,7 +35,9 @@ namespace Catch {
     }
 
     TestSpec::ExcludedPattern::ExcludedPattern( PatternPtr const& underlyingPattern ) : m_underlyingPattern( underlyingPattern ) {}
-    bool TestSpec::ExcludedPattern::matches( TestCaseInfo const& testCase ) const { return !m_underlyingPattern->matches( testCase ); }
+    bool TestSpec::ExcludedPattern::matches( TestCaseInfo const& testCase ) const {
+        return !(testCase.isHidden() || m_underlyingPattern->matches( testCase ));
+    }
 
     bool TestSpec::Filter::matches( TestCaseInfo const& testCase ) const {
         // All patterns in a filter must match for the filter to be a match

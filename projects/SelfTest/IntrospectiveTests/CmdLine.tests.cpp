@@ -173,7 +173,7 @@ TEST_CASE( "Parse test names and tags" ) {
         CHECK( spec.hasFilters() == true );
         CHECK( spec.matches( tcA ) == true );
         CHECK( spec.matches( tcB ) == false );
-        CHECK( spec.matches( tcC ) == true );
+        CHECK( spec.matches( tcC ) == false );
     }
     SECTION( "One tag exclusion and one tag inclusion" ) {
         TestSpec spec = parseTestSpec( "~[two][x]" );
@@ -203,7 +203,7 @@ TEST_CASE( "Parse test names and tags" ) {
         CHECK( spec.hasFilters() == true );
         CHECK( spec.matches( tcA ) == true );
         CHECK( spec.matches( tcB ) == false );
-        CHECK( spec.matches( tcC ) == true );
+        CHECK( spec.matches( tcC ) == false );
         CHECK( spec.matches( tcD ) == true );
     }
     SECTION( "wildcarded name exclusion" ) {
